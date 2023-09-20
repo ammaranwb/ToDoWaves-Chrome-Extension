@@ -1,6 +1,6 @@
-# Chrome Extension: Task and Note Manager
+# Chrome Extension: ToDoWaves
 
-Welcome to the Task and Note Manager Chrome extension project! This extension is built using HTML, CSS, and JavaScript, and it aims to provide a simple yet powerful task management and note-taking solution right in your browser.
+Welcome to the Tasks and Note Manager Chrome extension project! This extension is built using HTML, CSS, and JavaScript, and it aims to provide a simple yet powerful task management and note-taking solution right in your browser.
 
 ## Features
 
