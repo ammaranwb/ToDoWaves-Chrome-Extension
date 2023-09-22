@@ -5,16 +5,17 @@ html {
 }
 
 body {
-    width: 290px;
-    height: 320px;
+    width: 420px;
+    height: 250px;
     font-family: 'Lato', sans-serif;
     background-color: white;
 }
 
 #container{
-    width: 285px;
-    height: 315px;
-    background-color: rgb(197, 133, 197);
+    width: 420px;
+    height: 250px;
+    background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
     border-radius: 5px;
     position: absolute;
     top: 50%;
@@ -43,10 +44,60 @@ body {
 
 #add-task-btn {
     padding: 10px 20px;
-    background-color: #007bff;
+    background: rgb(34,193,195);
+background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
+#all-task {
+    width: 90%; 
+    margin: 0 auto; 
+}
+#task-list {
+    list-style: none; 
+    padding: 0;
+    
+}
 
+#task-list li {
+    background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,94,121,1) 35%, rgba(0,212,255,1) 100%); 
+    margin-bottom: 10px; 
+    color: white;
+    padding: 10px;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.edit, .done, .delete {
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    will-change: box-shadow, transform;
+    background: #FCFCFD;
+    box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+    height: 32px;
+    padding: 0 16px; 
+    border-radius: 6px;
+    font-size: 14px; 
+    color: #36395a;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.edit:hover, .done:hover, .delete:hover {
+    box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%);
+    transform: translateY(-1px); 
+    background: #E5E5E5;
+}
+
+.edit:active, .done:active, .delete:active {
+    box-shadow: inset 0px 3px 7px #d6d6e7;
+        transform: translateY(2px);
+}
