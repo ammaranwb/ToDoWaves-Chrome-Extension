@@ -1,0 +1,52 @@
+html {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+body {
+    width: 290px;
+    height: 320px;
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+}
+
+#container{
+    width: 285px;
+    height: 315px;
+    background-color: rgb(197, 133, 197);
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.heading {
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#add-task {
+    text-align: center;
+    padding: 15px;
+}
+
+#input-task-field {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#add-task-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
