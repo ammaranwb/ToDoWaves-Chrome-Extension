@@ -14,11 +14,38 @@ addButton.addEventListener("click", function () {
         const listItem = document.createElement("li");
         listItem.textContent = taskText;
 
+        listItem.innerHTML = `
+        ${taskText}
+        <button class="edit">Edit</button>
+        <button class="done">Done</button>
+        <button class="delete">Delete</button>
+    `;
+
         // Append the new task to the task list
         taskList.appendChild(listItem);
 
         // Clear the input field
         inputField.value = "";
+
+        // Add event listeners for the edit, done, and delete buttons within this task
+        const editBtn = listItem.querySelector(".edit");
+        const doneBtn = listItem.querySelector(".done");
+        const deleteBtn = listItem.querySelector(".delete");
+
+        editBtn.addEventListener("click", function () {
+            // Implement edit functionality here
+            alert("Edit button clicked for: " + taskText);
+        });
+
+        doneBtn.addEventListener("click", function () {
+            // Implement done functionality here
+            alert("Done button clicked for: " + taskText);
+        });
+
+        deleteBtn.addEventListener("click", function () {
+            // Implement delete functionality here
+            listItem.remove();
+        });
     }
 });
 
