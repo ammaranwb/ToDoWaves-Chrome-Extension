@@ -3,77 +3,168 @@ const inputField = document.getElementById("input-task-field");
 const addButton = document.getElementById("add-task-btn");
 const taskList = document.getElementById("task-list");
 
+// Function to load tasks from local storage
+function loadTasksFromLocalStorage() {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    tasks.forEach(function (taskText) {
+        const listItem = document.createElement("li");
+        listItem.textContent = taskText;
+
+        listItem.innerHTML = `
+            ${taskText}
+            <button class="edit">Edit</button>
+            <button class="done">Done</button>
+            <button class="delete">Delete</button>
+        `;
+
+        // Append the task to the task list
+        taskList.appendChild(listItem);
+
+        // Add event listeners for the edit, done, and delete buttons within this task
+        const editBtn = listItem.querySelector(".edit");
+        const doneBtn = listItem.querySelector(".done");
+        const deleteBtn = listItem.querySelector(".delete");
+
+        editBtn.addEventListener("click", function () {
+            // Populate the input field with the task text for editing
+            inputField.value = taskText;
+
+            // Remove the current task from the list
+            listItem.remove();
+        });
+
+        doneBtn.addEventListener("click", function () {
+            // Create a new span element for the task text
+            const taskTextSpan = document.createElement("span");
+            taskTextSpan.textContent = taskText;
+
+            // Toggle the button text between "Done" and "Undo"
+            if (doneBtn.textContent === "Done") {
+                doneBtn.textContent = "Undo";
+
+                taskTextSpan.style.textDecoration = "line-through";
+                taskTextSpan.style.opacity = "0.6"; // Dim the text
+                taskTextSpan.style.fontStyle = "italic"; // Make the text italic
+            } else {
+                doneBtn.textContent = "Done";
+
+                taskTextSpan.style.textDecoration = "none"; // Remove the line-through
+                taskTextSpan.style.opacity = "1"; // Restore full opacity
+                taskTextSpan.style.fontStyle = "normal";
+            }
+
+            // Replace the existing task text with the modified span
+            listItem.innerHTML = "";
+            listItem.appendChild(taskTextSpan);
+
+            // Add the buttons back to the listItem
+            listItem.appendChild(editBtn);
+            listItem.appendChild(doneBtn);
+            listItem.appendChild(deleteBtn);
+        });
+
+        deleteBtn.addEventListener("click", function () {
+            // Implement delete functionality here
+            listItem.remove();
+            // Remove the task from the tasks array
+            const taskIndex = tasks.indexOf(taskText);
+            if (taskIndex !== -1) {
+                tasks.splice(taskIndex, 1);
+                // Save the updated tasks array to local storage
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            }
+        });
+    });
+}
+
+// Call the loadTasksFromLocalStorage function when the page loads
+window.addEventListener('load', loadTasksFromLocalStorage);
+
 // Add a click event listener to the "Add" button
 addButton.addEventListener("click", function () {
-  // Get the task text from the input field
-  const taskText = inputField.value.trim();
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-  // Check if the input is not empty
-  if (taskText !== "") {
-    // Create a new list item
-    const listItem = document.createElement("li");
-    listItem.textContent = taskText;
+    // Get the task text from the input field
+    const taskText = inputField.value.trim();
 
-    listItem.innerHTML = `
-        ${taskText}
-        <button class="edit">Edit</button>
-        <button class="done">Done</button>
-        <button class="delete">Delete</button>
-    `;
+    // Check if the input is not empty
+    if (taskText !== "") {
+        // Add the new task to the tasks array
+        tasks.push(taskText);
 
-    // Append the new task to the task list
-    taskList.appendChild(listItem);
+        // Save the updated tasks array to local storage
+        localStorage.setItem('tasks', JSON.stringify(tasks));
 
-    // Clear the input field
-    inputField.value = "";
+        const listItem = document.createElement("li");
+        listItem.textContent = taskText;
 
-    // Add event listeners for the edit, done, and delete buttons within this task
-    const editBtn = listItem.querySelector(".edit");
-    const doneBtn = listItem.querySelector(".done");
-    const deleteBtn = listItem.querySelector(".delete");
+        listItem.innerHTML = `
+            ${taskText}
+            <button class="edit">Edit</button>
+            <button class="done">Done</button>
+            <button class="delete">Delete</button>
+        `;
 
-    editBtn.addEventListener("click", function () {
-      // Populate the input field with the task text for editing
-      inputField.value = taskText;
+        // Append the new task to the task list
+        taskList.appendChild(listItem);
 
-      // Remove the current task from the list
-      listItem.remove();
-    });
+        // Clear the input field
+        inputField.value = "";
 
-    doneBtn.addEventListener("click", function () {
-      // Create a new span element for the task text
-      const taskTextSpan = document.createElement("span");
-      taskTextSpan.textContent = taskText;
+        // Add event listeners for the edit, done, and delete buttons within this task
+        const editBtn = listItem.querySelector(".edit");
+        const doneBtn = listItem.querySelector(".done");
+        const deleteBtn = listItem.querySelector(".delete");
 
-      // Toggle the button text between "Done" and "Undo"
-      if (doneBtn.textContent === "Done") {
-        doneBtn.textContent = "Undo";
+        editBtn.addEventListener("click", function () {
+            // Populate the input field with the task text for editing
+            inputField.value = taskText;
 
-        taskTextSpan.style.textDecoration = "line-through";
-        taskTextSpan.style.opacity = "0.6"; // Dim the text
-        taskTextSpan.style.fontStyle = "italic"; // Make the text italic
-        console.log("changing", taskTextSpan);
-      } else {
-        doneBtn.textContent = "Done";
+            // Remove the current task from the list
+            listItem.remove();
+        });
 
-        taskTextSpan.style.textDecoration = "none"; // Remove the line-through
-        taskTextSpan.style.opacity = "1"; // Restore full opacity
-        taskTextSpan.style.fontStyle = "normal";
-      }
+        doneBtn.addEventListener("click", function () {
+            // Create a new span element for the task text
+            const taskTextSpan = document.createElement("span");
+            taskTextSpan.textContent = taskText;
 
-      // Replace the existing task text with the modified span
-      listItem.innerHTML = "";
-      listItem.appendChild(taskTextSpan);
+            // Toggle the button text between "Done" and "Undo"
+            if (doneBtn.textContent === "Done") {
+                doneBtn.textContent = "Undo";
 
-      // Add the buttons back to the listItem
-      listItem.appendChild(editBtn);
-      listItem.appendChild(doneBtn);
-      listItem.appendChild(deleteBtn);
-    });
+                taskTextSpan.style.textDecoration = "line-through";
+                taskTextSpan.style.opacity = "0.6"; // Dim the text
+                taskTextSpan.style.fontStyle = "italic"; // Make the text italic
+            } else {
+                doneBtn.textContent = "Done";
 
-    deleteBtn.addEventListener("click", function () {
-      // Implement delete functionality here
-      listItem.remove();
-    });
-  }
+                taskTextSpan.style.textDecoration = "none"; // Remove the line-through
+                taskTextSpan.style.opacity = "1"; // Restore full opacity
+                taskTextSpan.style.fontStyle = "normal";
+            }
+
+            // Replace the existing task text with the modified span
+            listItem.innerHTML = "";
+            listItem.appendChild(taskTextSpan);
+
+            // Add the buttons back to the listItem
+            listItem.appendChild(editBtn);
+            listItem.appendChild(doneBtn);
+            listItem.appendChild(deleteBtn);
+        });
+
+        deleteBtn.addEventListener("click", function () {
+            // Implement delete functionality here
+            listItem.remove();
+            // Remove the task from the tasks array
+            const taskIndex = tasks.indexOf(taskText);
+            if (taskIndex !== -1) {
+                tasks.splice(taskIndex, 1);
+                // Save the updated tasks array to local storage
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            }
+        });
+    }
 });
