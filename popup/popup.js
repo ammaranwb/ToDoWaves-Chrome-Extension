@@ -33,8 +33,11 @@ addButton.addEventListener("click", function () {
         const deleteBtn = listItem.querySelector(".delete");
 
         editBtn.addEventListener("click", function () {
-            // Implement edit functionality here
-            alert("Edit button clicked for: " + taskText);
+            // Populate the input field with the task text for editing
+            inputField.value = taskText;
+            
+            // Remove the current task from the list
+            listItem.remove();
         });
 
         doneBtn.addEventListener("click", function () {
