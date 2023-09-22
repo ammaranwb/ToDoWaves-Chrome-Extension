@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="popup.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="popup.css" />
     <title>To Do Waves</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="container">
-        <div class="heading">To-Do Waves</div>
-    <div id="add-task">
-        <input id="input-task-field" type="text" placeholder="Tasks to accomplish">
+      <div class="heading">To-Do Waves</div>
+      <div id="add-task">
+        <input
+          id="input-task-field"
+          type="text"
+          placeholder="Tasks to accomplish"
+        />
         <button id="add-task-btn">Add</button>
-    </div>
-    <div id="all-task">
-        <ul id="task-list"></ul>
-    </div>
+      </div>
+      <div id="all-task">
+        <div id="task-container">
+          <ul id="task-list"></ul>
+        </div>
+      </div>
     </div>
     <script src="popup.js"></script>
-</body>
+  </body>
 </html>
