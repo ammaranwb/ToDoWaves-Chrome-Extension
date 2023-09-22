@@ -1,9 +1,17 @@
 {
-    "manifest_version": 3,
-    "name": "Taskify",
-    "description": "One Step at a Time",
-    "version": "1.0",
-    "action": {
-      "default_popup": "popup/popup.html"
-    }
+  "manifest_version": 3,
+  "name": "Taskify",
+  "description": "One Step at a Time",
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": "images/list.png"
+  },
+
+  "icons": {
+    "16": "images/list.png",
+    "32": "images/list.png",
+    "48": "images/list.png",
+    "128": "images/list.png"
+  }
 }
